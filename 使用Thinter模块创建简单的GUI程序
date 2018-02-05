@@ -1,0 +1,27 @@
+from tkinter import *
+import tkinter.messagebox as messagebox
+
+class Application(Frame):
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.pack()
+        #pack()方法把Widget加入到父容器中，并实现布局。pack()是最简单的布局，grid()可以实现更复杂的布局。
+        self.createWidgets()
+
+    #在createWidgets()方法中，我们创建一个Entry(文本框)和一个Button，当Button被点击时，触发hello()弹出消息框。
+    def createWidgets(self):
+        self.nameInput = Entry(self)  #创建可供输入的文本框
+        self.nameInput.pack()
+        self.alertButton = Button(self, text='Hello', command=self.hello) #按钮名为“hello",点击出发hello()函数
+        self.alertButton.pack()
+
+    def hello(self):
+        name = self.nameInput.get() or 'world'  #获取文本框内容
+        messagebox.showinfo('Message', 'Hello, %s' % name)  #弹出消息框
+
+
+app = Application()
+# 设置窗口标题:
+app.master.title('Fist GUI Program')
+# 主消息循环:
+app.mainloop()
